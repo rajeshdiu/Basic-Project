@@ -4,3 +4,5 @@ from myApp.models import *
 
 
 admin.site.register(customUser)
+admin.site.register(viewersProfileModel) 
+admin.site.register(BloggerProfileModel) 

@@ -18,6 +18,7 @@ def signupPage(request):
         gender=request.POST.get("gender")
         age=request.POST.get("age")
         contact_no=request.POST.get("contact_no")
+        profile_pic=request.FILES.get("profile_pic")
         
         if password==Confirm_password:
             
@@ -28,8 +29,16 @@ def signupPage(request):
                 password=password,
                 user_type=user_type,
                 Age=age,
-                Contact_No=contact_no
+                Contact_No=contact_no,
+                Gender=gender,
+                profile_pic=profile_pic,
             )
+            
+            if user_type=='viewers':
+                viewersProfileModel.objects.create(user=user)
+                
+            elif user_type=='blogger':
+                BloggerProfileModel.objects.create(user=user)
             
             return redirect("signInPage")
             
@@ -68,3 +77,7 @@ def logoutPage(request):
     logout(request)
     
     return redirect('signInPage')
+
+def profilePage(request):
+    
+    return render(request,"profilePage.html")

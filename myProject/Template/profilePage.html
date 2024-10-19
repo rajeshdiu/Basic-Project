@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+
+
+{% block body %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        
+        .profile-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+
+        .profile-container img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 3px solid #6a11cb;
+        }
+
+        h2 {
+            margin: 10px 0;
+            color: #333;
+        }
+
+        p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .edit-button {
+            padding: 10px 20px;
+            background-color: #6a11cb;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .edit-button:hover {
+            background-color: #2575fc;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <img src="/{{request.user.profile_pic}}" alt="Profile Picture">
+        <h2>John Doe</h2>
+        <p><strong>Email:</strong> {{request.user.email}}</p>
+        <p><strong>Username:</strong> {{request.user.username}}</p>
+        <p><strong>Age:</strong> {{request.user.Age}}</p>
+        <p><strong>Gender:</strong> {{request.user.Gender}}</p>
+        <p><strong>Contact No:</strong> {{request.user.Contact_No}}</p>
+        <p><strong>User Type:</strong> {{request.user.user_type}}</p>
+
+        <div class="button-container">
+            <button class="edit-button">Edit Profile</button>
+        </div>
+    </div>
+</body>
+</html>
+
+    
+{% endblock body %}
+    

@@ -76,7 +76,7 @@
 <body>
     <div class="container">
         <h2>Signup</h2>
-        <form action="" id="signupForm" method="POST">
+        <form action="" id="signupForm" method="POST" enctype="multipart/form-data">
             
             {% csrf_token %}
             <label for="username">Username:</label>
@@ -96,7 +96,7 @@
             <select id="user_type" name="user_type" required>
                 <option value="">Select...</option>
                 <option value="viewers">Viewers</option>
-                <option value="blooger">Blooger</option>
+                <option value="blogger">Blogger</option>
             </select>
 
             <label for="gender">Gender:</label>
@@ -113,6 +113,10 @@
 
             <label for="contact_no">Contact No:</label>
             <input type="text" id="contact_no" name="contact_no" required>
+
+            
+            <label for="contact_no">Profile Pic :</label>
+            <input type="file" id="contact_no" name="profile_pic" required>
 
             <button type="submit">Signup</button>
             
