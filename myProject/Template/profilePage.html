@@ -77,12 +77,7 @@
 
     <div class="button-container">
 
-        <a href="{% url 'editProfile' %}" class="action-link">Edit Profile</a>
 
-        {% if request.user.user_type == 'creator' %}
-            <a href="{% url 'addRecipePage' %}" class="action-link">Add Recipe</a>
-            <a href="{% url 'createdRecipe' %}" class="action-link">Created Recipes</a>
-        {% endif %}
     </div>
 </div>
 {% endblock body %}
