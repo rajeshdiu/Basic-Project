@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Feed</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .recipe-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .recipe-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .recipe-image img {
+            width: 100%;
+            height: auto;
+        }
+        
+        .recipe-info {
+            padding: 15px;
+        }
+        
+        h2 {
+            font-size: 1.5em;
+            color: #333;
+        }
+        
+        p {
+            margin: 10px 0;
+            color: #555;
+        }
+        
+        .read-more {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        
+        .read-more:hover {
+            background-color: #0056b3;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Recipe Feed</h1>
+        </header>
+        <header>
+            <form method="GET" action="{% url 'recipe_search' %}" class="search-form">
+                <input type="text" name="query" placeholder="Search recipes..." required>
+                <button type="submit">Search</button>
+            </form>
+        </header>
+
+        <div class="recipe-list">
+            {% for recipe in recipes %}
+            <div class="recipe-card">
+                <div class="recipe-image">
+                    {% if recipe.image %}
+                        <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}">
+                    {% endif %}
+                </div>
+                <div class="recipe-info">
+                    <h2>{{ recipe.title }}</h2>
+                    <p><strong>By:</strong> {{ recipe.user.username }}</p>
+                    <p><strong>Category:</strong> {{ recipe.Category }}</p>
+                    <p>{{ recipe.ingredients|truncatewords:20 }}</p>
+                    <a href="{% url 'viewRecipe' recipe.id %}" class="read-more">Read More</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
+
+    
+{% endblock body %}
+    

@@ -1,81 +1,88 @@
 {% extends 'base.html' %}
 
-
-
 {% block body %}
+<style>
+    .profile-container {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        width: 400px;
+        text-align: center;
+        margin: 20px auto; /* Center the profile container */
+    }
+    
+    .profile-container img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-bottom: 20px;
+        border: 3px solid #6a11cb;
+    }
+    
+    h2 {
+        margin: 10px 0;
+        color: #333;
+    }
+    
+    p {
+        margin: 5px 0;
+        color: #555;
+    }
+    
+    .button-container {
+        margin-top: 20px;
+    }
+    
+    .edit-button {
+        padding: 10px 20px;
+        background-color: #6a11cb;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-bottom: 10px;
+    }
+    
+    .edit-button:hover {
+        background-color: #2575fc;
+    }
+    
+    .action-link {
+        display: inline-block;
+        margin: 5px 10px;
+        padding: 10px 15px;
+        background-color: #007BFF;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    
+    .action-link:hover {
+        background-color: #0056b3;
+    }
+    
+</style>
+<div class="profile-container">
+    <h2>{{ request.user.username }}</h2>
+    <img src="/{{request.user.Profile_Pic }}" alt="Profile Picture">
+    <h2>{{ request.user.first_name }} {{ request.user.last_name }}</h2>
+    <p><strong>Email:</strong> {{ request.user.email }}</p>
+    <p><strong>Specialties:</strong> {{ request.user.creatorsProfile.Specialties }}</p>
+    <p><strong>Followers:</strong> {{ request.user.creatorsProfile.Followers }}</p>
+    <p><strong>Achievements:</strong> {{ request.user.creatorsProfile.Achievements }}</p>
+    <p><strong>Bio:</strong> {{ request.user.creatorsProfile.Bio }}</p>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
-    <style>
-        
-        .profile-container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            width: 400px;
-            text-align: center;
-        }
+    <div class="button-container">
 
-        .profile-container img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            margin-bottom: 20px;
-            border: 3px solid #6a11cb;
-        }
+        <a href="{% url 'editProfile' %}" class="action-link">Edit Profile</a>
 
-        h2 {
-            margin: 10px 0;
-            color: #333;
-        }
-
-        p {
-            margin: 5px 0;
-            color: #555;
-        }
-
-        .button-container {
-            margin-top: 20px;
-        }
-
-        .edit-button {
-            padding: 10px 20px;
-            background-color: #6a11cb;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .edit-button:hover {
-            background-color: #2575fc;
-        }
-    </style>
-</head>
-<body>
-    <div class="profile-container">
-        <img src="/{{request.user.profile_pic}}" alt="Profile Picture">
-        <h2>John Doe</h2>
-        <p><strong>Email:</strong> {{request.user.email}}</p>
-        <p><strong>Username:</strong> {{request.user.username}}</p>
-        <p><strong>Age:</strong> {{request.user.Age}}</p>
-        <p><strong>Gender:</strong> {{request.user.Gender}}</p>
-        <p><strong>Contact No:</strong> {{request.user.Contact_No}}</p>
-        <p><strong>User Type:</strong> {{request.user.user_type}}</p>
-
-        <div class="button-container">
-            <button class="edit-button">Edit Profile</button>
-        </div>
+        {% if request.user.user_type == 'creator' %}
+            <a href="{% url 'addRecipePage' %}" class="action-link">Add Recipe</a>
+            <a href="{% url 'createdRecipe' %}" class="action-link">Created Recipes</a>
+        {% endif %}
     </div>
-</body>
-</html>
-
-    
+</div>
 {% endblock body %}
-    
