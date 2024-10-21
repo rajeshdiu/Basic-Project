@@ -25,14 +25,12 @@ def signupPage(request):
                 email=email,
                 password=password,
                 user_type=user_type,
-               
             )
-            
-            if user_type=='viewers':
-                viewersProfileModel.objects.create(user=user)
+            if user_type=='seeker':
+                seekerProfileModel.objects.create(user=user)
                 
-            elif user_type=='creator':
-                creatorProfileModel.objects.create(user=user)
+            elif user_type=='recruiter':
+                recruiterProfileModel.objects.create(user=user)
             
             return redirect("signInPage")
             
