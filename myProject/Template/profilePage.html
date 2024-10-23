@@ -68,8 +68,26 @@
 <div class="profile-container">
     <h2>{{ request.user.username }}</h2>
     <img src="/{{request.user.Profile_Pic }}" alt="Profile Picture">
+
+    
+    
+    {% if request.user.user_type == 'recruiter' %}
+
+    <h1>Recruiter</h1>
+        
+    {% endif %}
+
+    {% if request.user.user_type == 'seeker' %}
+
+    <h1>Seeker</h1>
+        
+    {% endif %}
+        
+
+
     <h2>{{ request.user.first_name }} {{ request.user.last_name }}</h2>
     <p><strong>Email:</strong> {{ request.user.email }}</p>
+    <p><strong>Contact Number:</strong> {{ request.user.contact_no }}</p>
 
     <div class="button-container">
 

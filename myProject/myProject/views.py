@@ -15,6 +15,7 @@ def signupPage(request):
         password=request.POST.get("password")
         Confirm_password=request.POST.get("Confirm_password")
         user_type=request.POST.get("user_type")
+        Profile_Pic=request.FILES.get("Profile_Pic")
     
         
         if password==Confirm_password:
@@ -25,6 +26,7 @@ def signupPage(request):
                 email=email,
                 password=password,
                 user_type=user_type,
+                Profile_Pic=Profile_Pic,
             )
             if user_type=='seeker':
                 seekerProfileModel.objects.create(user=user)
